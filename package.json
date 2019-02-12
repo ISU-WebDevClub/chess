@@ -1,0 +1,32 @@
+{
+  "name": "chess",
+  "version": "0.1.0",
+  "description": "Chess with React+TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ISU-WebDevClub/chess.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ISU-WebDevClub/chess/issues"
+  },
+  "homepage": "https://github.com/ISU-WebDevClub/chess#readme",
+  "dependencies": {
+    "@types/react": "^16.8.2",
+    "@types/react-dom": "^16.8.0",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "webpack": "^4.29.3"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.1",
+    "source-map-loader": "^0.2.4",
+    "typescript": "^3.3.3",
+    "webpack-cli": "^3.2.3"
+  }
+}
