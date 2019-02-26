@@ -16,8 +16,8 @@ module.exports = {
             {enforce: "pre",test:/\.js$/,loader:"source-map-loader"}
         ]
     },
-    externals: {
-        "react":"React",
-        "react-dom":"ReactDOM"
-    }
+    // externals: {
+    //     "react":"React",
+    //     "react-dom":"ReactDOM"
+    // }
 };
