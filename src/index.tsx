@@ -5,5 +5,5 @@ import {Board} from "./components/Board";
 
 ReactDOM.render(
     <Board compiler = "TypeScript" framework ="React"/>,
-    document.getElementById("example")
+    document.getElementById("app")
 );
