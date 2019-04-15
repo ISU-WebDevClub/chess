@@ -4,9 +4,11 @@ import {Piece, PieceType} from "./Piece";
 
 export interface BoardProps { compiler: string; framework: string;}
 
+export interface TileProps { row: number; column: number;}
+
 export interface BoardState {
     flip: boolean;
-    Board: [][]; // [row][column]
+    Board: [any][any]; // [row][column]
 }
 
 /*
@@ -31,7 +33,48 @@ export interface BoardState {
 //     <div style={divStyle} className="board">asdasd</div>
 // </div>
 
+
+
 export class Board extends React.Component<BoardProps, BoardState>{
+    constructor(props: any) {
+        super(props);
+        this.state = { Board: [
+            this.initPieces("black", false),
+            this.initPieces("black", true),
+            [{}],
+            [{}],
+            [{}],
+            [{}],
+            this.initPieces("white", true),
+            this.initPieces("black", false),
+        ],
+        flip: false };
+      }
+    
+      initPieces(color:string, pawns:boolean) : [Object] {
+
+        var obj: [object];
+    
+        if (pawns) {
+            for (let i = 0; i<8; i++) {
+                var uh = {type: PieceType.PAWN, color: color, captured: false};
+                obj.push(uh);
+            }
+            return obj;
+        }
+    
+        obj.push({type:PieceType.ROOK, color: color, captured: false});
+        obj.push({type:PieceType.KNIGHT, color: color, captured: false});
+        obj.push({type:PieceType.BISHOP, color: color, captured: false});
+        obj.push({type:PieceType.KING, color: color, captured: false});
+        obj.push({type:PieceType.QUEEN, color: color, captured: false});
+        obj.push({type:PieceType.BISHOP, color: color, captured: false});
+        obj.push({type:PieceType.KNIGHT, color: color, captured: false});
+        obj.push({type:PieceType.ROOK, color: color, captured: false});
+    
+        return obj;
+    }
+
     render(){
         const divStyle={
             fontSize: '60px',
@@ -47,97 +90,30 @@ export class Board extends React.Component<BoardProps, BoardState>{
             padding:'17px',
             'background-color': 'red',
         };
-        return(
-        <div>
-            <div style={divStyle} className="board">hello</div>
-            
-            {/* <div>
-                <div>
-                    <div style={block}>01</div>
-                    <div style={block1}>02</div>
-                    <div style={block}>03</div>
-                    <div style={block1}>04</div>
-                    <div style={block}>05</div>
-                    <div style={block1}>06</div>
-                    <div style={block}>07</div>
-                    <div style={block1}>08</div>
-                </div>
-                <div>
-                    <div style={block1}>11</div>
-                    <div style={block}>12</div>
-                    <div style={block1}>13</div>
-                    <div style={block}>14</div>
-                    <div style={block1}>15</div>
-                    <div style={block}>16</div>
-                    <div style={block1}>17</div>
-                    <div style={block}>18</div>
-                </div>
-                <div>
-                    <div style={block}>21</div>
-                    <div style={block1}>22</div>
-                    <div style={block}>23</div>
-                    <div style={block1}>24</div>
-                    <div style={block}>25</div>
-                    <div style={block1}>26</div>
-                    <div style={block}>27</div>
-                    <div style={block1}>28</div>
-                </div>
-                <div>
-                    <div style={block1}>31</div>
-                    <div style={block}>32</div>
-                    <div style={block1}>33</div>
-                    <div style={block}>34</div>
-                    <div style={block1}>35</div>
-                    <div style={block}>36</div>
-                    <div style={block1}>37</div>
-                    <div style={block}>38</div>
-                </div>
-                <div>
-                    <div style={block}>41</div>
-                    <div style={block1}>42</div>
-                    <div style={block}>43</div>
-                    <div style={block1}>44</div>
-                    <div style={block}>45</div>
-                    <div style={block1}>46</div>
-                    <div style={block}>47</div>
-                    <div style={block1}>48</div>
-                </div>
-                <div>
-                    <div style={block1}>51</div>
-                    <div style={block}>52</div>
-                    <div style={block1}>53</div>
-                    <div style={block}>54</div>
-                    <div style={block1}>55</div>
-                    <div style={block}>56</div>
-                    <div style={block1}>7</div>
-                    <div style={block}>8</div>
-                </div>
-                <div>
-                    <div style={block}>1</div>
-                    <div style={block1}>2</div>
-                    <div style={block}>3</div>
-                    <div style={block1}>4</div>
-                    <div style={block}>5</div>
-                    <div style={block1}>6</div>
-                    <div style={block}>7</div>
-                    <div style={block1}>8</div>
-                </div>
-                <div>
-                    <div style={block1}>1</div>
-                    <div style={block}>2</div>
-                    <div style={block1}>3</div>
-                    <div style={block}>4</div>
-                    <div style={block1}>5</div>
-                    <div style={block}>6</div>
-                    <div style={block1}>7</div>
-                    <div style={block}>8</div>
-                </div> */}
-                
-        
-            
-            </div>
 
-            {/* <Piece type={PieceType.KING} color="white"/> */}
+        var rows: any;
+        rows = [8,7,6,5,4,3,2,1];
+        
+        var columns: any;
+        columns = ["a", "b", "c", "d", "e", "f", "g", "h"];
+
+        var chessColumns: any;
+        chessColumns = columns.map((column: any) =>
+        <div className="tile">{column}</div>
+      );
+
+        var chessRows: any;
+        chessRows = rows.map((row: any) =>
+        <div className="row">{chessColumns}</div>
+      );
+
+
+
+        return(
+        <div className="board">
+            {
+           chessRows
+            }
         </div>
         );
     }

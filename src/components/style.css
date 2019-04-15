@@ -1,7 +1,35 @@
 .board{
-    color:purple
+    color:purple;
+    box-sizing:content;
+    width:800px;
 }
 
 .captured:after {
   content: 'captured';
+}
+
+.block {
+  display: 'inline-block';
+  padding:'17px';
+}
+
+.row {
+  display:flex;
+  flex-flow:row nowrap;
+  border: 1px black solid;
+}
+
+/* Checkerboard Styling */
+
+.tile{
+  width:100px;
+  height:100px;
+  background-color:#FFF;
+}
+.row:nth-child(odd) .tile:nth-child(even){
+  background-color:#333;
+}
+
+.row:nth-child(even) .tile:nth-child(odd){
+  background-color:#333;
 }
